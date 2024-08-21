@@ -10,3 +10,19 @@
    - name: Print message
      ansible.builtin.debug:
       msg: Hello world
+
+   - name: boot partition 
+     community.general.parted:
+     device: /dev/sda
+     number: 1
+     state: present
+     fs_type: swap
+     part_end: 4GiB
+ 
+   - name: root partition 
+     community.general.parted:
+     device: /dev/sda
+     number: 2
+     part_start: 4GiB
+     state: present
+     fs_type: btrfs
