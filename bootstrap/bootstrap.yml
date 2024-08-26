@@ -36,7 +36,7 @@
       flags: [ boot , esp ]
       number: 1
       state: present
-      part_end: 1gib
+      part_end: 1GiB
       name: boot
 
    - name: swap parition
@@ -46,8 +46,8 @@
       fs_type: linux-swap
       number: 2
       state: present
-      part_start: 1gib
-      part_end: 5gib
+      part_start: 1GiB
+      part_end: 5GiB
       name: swap
 
    - name: root parition
@@ -57,7 +57,7 @@
       fs_type: btrfs
       number: 3
       state: present
-      part_start: 5gib
+      part_start: 5GiB
       part_end: 100%
       name: root
 
