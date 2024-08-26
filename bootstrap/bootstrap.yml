@@ -167,8 +167,10 @@
    - name: Configure ansible
      ansible.builtin.shell: |
        arch-chroot /mnt \
+        rm -rf /home/{{new_user}}/ansipull \
         git clone https://github.com/neiltheblue/ansipull.git \
         /home/{{new_user}}/ansipull
         
    - name: Reboot
-     ansible.builtin.shell: umount -R /mnt && reboot
+      ansible.builtin.reboot:
+
