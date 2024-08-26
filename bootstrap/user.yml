@@ -12,6 +12,10 @@
   
   tasks:
 
+   - name: pacstrap
+     ansible.builtin.shell: |
+       yes | pacstrap -K /mnt sudo 
+  
    - block:
      - name: create user
        ansible.builtin.shell: |

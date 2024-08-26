@@ -11,7 +11,7 @@
    - name: pacstrap
      ansible.builtin.shell: |
        yes | pacstrap -K /mnt base \
-       linux linux-firmware ansible sudo git openssh grub efibootmgr nano dhcpcd
+       linux linux-firmware ansible sudo git openssh grub efibootmgr nano 
 
    - name: gen fstab
      ansible.builtin.shell: |
