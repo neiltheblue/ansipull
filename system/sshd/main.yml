@@ -1,0 +1,10 @@
+- hosts: localhost
+
+  tasks
+
+  - name: Install openssh
+    community.general.pacman:
+      name: openssh
+      update_cache: true
+      state: present
+    

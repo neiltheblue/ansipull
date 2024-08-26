@@ -1,0 +1,7 @@
+###########################
+## Main system playbook.
+## This and any child playbooks should be run on the local host.
+###########################
+
+- name: Setup sshd
+  ansible.builtin.import_playbook: sshd/main.yml
