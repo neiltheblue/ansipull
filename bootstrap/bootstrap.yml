@@ -93,7 +93,7 @@
    - name: Pacstrap
      ansible.builtin.shell: |
        yes | pacstrap -K /mnt base \
-       linux linux-firmware ansible sudo git openssh grub efibootmgr
+       linux linux-firmware ansible sudo git openssh grub efibootmgr nano
 
    - name: Gen fstab
      ansible.builtin.shell: |
