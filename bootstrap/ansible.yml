@@ -1,6 +1,6 @@
 - name: Configure ansible repo
   hosts: all
-  
+
   tasks:
 
    - name: clean ansible
@@ -12,5 +12,4 @@
      ansible.builtin.shell: |
        arch-chroot /mnt \
         git clone https://github.com/neiltheblue/ansipull.git /opt/ansipull
-     register: git
        

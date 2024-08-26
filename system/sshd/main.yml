@@ -1,5 +1,6 @@
 - name: OpenSSH
   hosts: localhost
+  become: true
 
   tasks:
 
@@ -8,6 +9,11 @@
       name: openssh
       update_cache: true
       state: present
+    become: true   
+
+  - name: Enable X11
+    ansible:builtin:shell: |
+      sed -i -e 's/#X11/X11/' /etc/sshd/sshd_config
     become: true   
 
   - name: Start service
