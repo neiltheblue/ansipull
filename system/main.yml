@@ -3,8 +3,8 @@
 ## This and any child playbooks should be run on the local host.
 ###########################
 
-- name: Setup packages
-  ansible.builtin.import_playbook: packages/main.yml
+# - name: Setup packages
+-  ansible.builtin.import_playbook: packages/main.yml
 
-- name: Setup sshd
-  ansible.builtin.import_playbook: sshd/main.yml
+# - name: Setup sshd
+-  ansible.builtin.import_playbook: sshd/main.yml
