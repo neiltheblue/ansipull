@@ -53,7 +53,7 @@
 
    - name: mount root
      ansible.builtin.shell: |
-       umount -r /mnt; mount /dev/sda3 /mnt
+       umount -R /mnt; mount /dev/sda3 /mnt
 
    - name: mount boot
      ansible.builtin.shell: |

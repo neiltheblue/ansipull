@@ -7,6 +7,10 @@
      ansible.builtin.shell: |
        yes | pacstrap -K /mnt dhcpcd
 
+   - name: Share hostname with server
+     ansible.builtin.shell: |
+        sed -i -e 's/#hostname/hostname/' /mnt/etc/dhcpcd.conf
+
    - name: Start service
      ansible.builtin.shell: |
        arch-chroot /mnt \
