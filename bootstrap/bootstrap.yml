@@ -157,9 +157,9 @@
        echo {{new_user}}:{{new_user_pass}} | chpasswd -r /mnt
 
    - name: create sudoers
-     ansible.builtign.shell: |
+     ansible.builtin.shell: |
        arch-chroot /mnt sed -i -e 's/# %sudo/%sudo/' /etc/sudoers
-
+   
    - name: set sudo
      ansible.builtin.shell: |
        arch-chroot /mnt groupadd -f -u {{new_user}} sudo
