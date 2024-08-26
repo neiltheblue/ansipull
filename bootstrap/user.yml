@@ -1,0 +1,31 @@
+- name: Configure user
+  hosts: all
+  vars:
+   new_user: neil
+   new_user_pass: password
+  vars_prompt:
+   - name: new_user_pass
+     prompt: Please enter the new user password for '{{new_user}}'
+     private: true
+     confirm: true
+     unsafe: true
+  
+  tasks:
+
+   - block:
+     - name: create user
+       ansible.builtin.shell: |
+         arch-chroot /mnt useradd -m {{new_user}} 
+     ignore_errors: yes
+
+   - name: set user password
+     ansible.builtin.shell: |
+       echo {{new_user}}:{{new_user_pass}} | chpasswd -R /mnt
+
+   - name: create sudoers
+     ansible.builtin.shell: |
+       arch-chroot /mnt sed -i -e 's/# %sudo/%sudo/' /etc/sudoers
+   
+   - name: set sudo
+     ansible.builtin.shell: |
+       arch-chroot /mnt groupadd -f -U {{new_user}} sudo

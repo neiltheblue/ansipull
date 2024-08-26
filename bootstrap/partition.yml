@@ -1,0 +1,69 @@
+- name: Partition host
+  hosts: all
+  
+  tasks:
+
+   - name: boot parition
+     community.general.parted:
+      device: /dev/sda
+      label: gpt
+      fs_type: fat32
+      flags: [ boot , esp ]
+      number: 1
+      state: present
+      part_end: 1GiB
+      name: boot
+
+   - name: swap parition
+     community.general.parted:
+      device: /dev/sda
+      label: gpt
+      fs_type: linux-swap
+      number: 2
+      state: present
+      part_start: 1GiB
+      part_end: 5GiB
+      name: swap
+
+   - name: root parition
+     community.general.parted:
+      device: /dev/sda
+      label: gpt
+      fs_type: btrfs
+      number: 3
+      state: present
+      part_start: 5GiB
+      part_end: 100%
+      name: root
+
+   - name: format boot
+     community.general.filesystem:
+       device: /dev/sda1
+       fstype: vfat
+
+   - name: format swap
+     community.general.filesystem:
+       device: /dev/sda2
+       fstype: swap
+
+   - name: format root
+     community.general.filesystem:
+       device: /dev/sda3
+       fstype: btrfs
+
+   - name: mount root
+     ansible.builtin.shell: |
+       umount -r /mnt; mount /dev/sda3 /mnt
+
+   - name: mount boot
+     ansible.builtin.shell: |
+       mkdir -p /mnt/boot && mount /dev/sda1 /mnt/boot
+
+   - block:
+     - name: mount swap
+       ansible.builtin.shell: | 
+         swapon /dev/sda2 2>1& > /dev/null
+     ignore_errors: yes
+
+- name: Now bootstrap 
+  ansible.builtin.import_playbook: main.yml

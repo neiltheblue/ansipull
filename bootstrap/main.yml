@@ -1,0 +1,24 @@
+#
+# New virtual machine bootstrap script.
+#
+# Boot to Arch live cd and create a new root password.
+# May need to ssh to machine once to store fingerprint
+# Then with:
+#   ansible-playbook <playbook> --user root -i <machine ip>, --ask-pass
+# or copy ssh key:
+#   ssh-copy-id -i <pub-key> root@<machine ip>
+# then login without ssh pasword:
+#   ansible-playbook <playbook> --user root -i <machine ip>, 
+
+
+- name: Bootstrap arch
+  ansible.builtin.import_playbook: bootstrap.yml
+  
+- name: Setup the main user
+  ansible.builtin.import_playbook: user.yml
+
+- name: Bootstrap the ansible playbooks
+  ansible.builtin.import_playbook: ansible.yml
+
+- name: Reboot 
+  ansible.builtin.import_playbook: reboot.yml
