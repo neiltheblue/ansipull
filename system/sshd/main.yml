@@ -1,6 +1,5 @@
 - name: OpenSSH
   hosts: localhost
-  become: true
 
   tasks:
 
@@ -12,9 +11,15 @@
     become: true   
 
   - name: Enable X11
-    ansible:builtin:shell: |
-      sed -i -e 's/#X11/X11/' /etc/sshd/sshd_config
-    become: true   
+    ansible.builtin.replace:
+      path: /etc/ssh/sshd_config
+      regexp: ^#(X11.*)
+      replace: \1
+      # backrefs: yes
+  # - name: Enable X11
+  #   ansible.builtin.shell: |
+  #     sed -i -e 's/#X11/X11/' /etc/ssh/sshd_config
+    become: true
 
   - name: Start service
     ansible.builtin.systemd_service:

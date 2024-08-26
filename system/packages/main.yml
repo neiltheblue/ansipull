@@ -1,0 +1,34 @@
+- name: Packages
+  hosts: localhost
+
+  tasks:
+
+  - name: Update cache
+    community.general.pacman:
+      update_cache: true
+    become: true   
+
+  - name: Install packages
+    community.general.pacman:
+      name: "{{item}}"
+      state: latest
+    loop:
+      - less
+      - neovim
+      - bat
+      - yazi
+      - which
+      - tree
+      - base-devel
+      - fzf
+      - python3
+    become: true   
+
+  - name: Clone yay
+    ansible.builtin.git:
+     repo: https://aur.archlinux.org/yay.git 
+     dest: /tmp/yay
+
+  - name: Install yay 
+    ansible.builtin.shell: |
+      cd /tmp/yay && yes | makepkg -si
