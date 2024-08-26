@@ -28,7 +28,7 @@
   
   tasks:
 
-   - name: Boot parition
+   - name: boot parition
      community.general.parted:
       device: /dev/sda
       label: gpt
@@ -36,141 +36,146 @@
       flags: [ boot , esp ]
       number: 1
       state: present
-      part_end: 1GiB
+      part_end: 1gib
       name: boot
-      
-   - name: Swap parition
+
+   - name: swap parition
      community.general.parted:
       device: /dev/sda
       label: gpt
       fs_type: linux-swap
       number: 2
       state: present
-      part_start: 1GiB
-      part_end: 5GiB
+      part_start: 1gib
+      part_end: 5gib
       name: swap
 
-   - name: Root parition
+   - name: root parition
      community.general.parted:
       device: /dev/sda
       label: gpt
       fs_type: btrfs
       number: 3
       state: present
-      part_start: 5GiB
+      part_start: 5gib
       part_end: 100%
       name: root
 
-   - name: Format boot
+   - name: format boot
      community.general.filesystem:
        device: /dev/sda1
        fstype: vfat
-  
-   - name: Format swap
+
+   - name: format swap
      community.general.filesystem:
        device: /dev/sda2
        fstype: swap
-  
-   - name: Format root
+
+   - name: format root
      community.general.filesystem:
        device: /dev/sda3
        fstype: btrfs
 
-   - name: Mount root
+   - name: mount root
      ansible.builtin.shell: |
-       umount -R /mnt; mount /dev/sda3 /mnt
+       umount -r /mnt; mount /dev/sda3 /mnt
 
-   - name: Mount boot
+   - name: mount boot
      ansible.builtin.shell: |
        mkdir -p /mnt/boot && mount /dev/sda1 /mnt/boot
 
    - block:
-     - name: Mount swap
+     - name: mount swap
        ansible.builtin.shell: | 
          swapon /dev/sda2 2>1& > /dev/null
      ignore_errors: yes
 
-   - name: Pacstrap
+   - name: pacstrap
      ansible.builtin.shell: |
-       yes | pacstrap -K /mnt base \
+       yes | pacstrap -k /mnt base \
        linux linux-firmware ansible sudo git openssh grub efibootmgr nano
 
-   - name: Gen fstab
+   - name: gen fstab
      ansible.builtin.shell: |
-       genfstab -U /mnt > /mnt/etc/fstab
+       genfstab -u /mnt > /mnt/etc/fstab
 
-   - name: Set timezone
+   - name: set timezone
      ansible.builtin.shell: |
-       arch-chroot /mnt ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
+       arch-chroot /mnt ln -sf /usr/share/zoneinfo/europe/london /etc/localtime
 
-   - name: Set clock
+   - name: set clock
      ansible.builtin.shell: |
        arch-chroot /mnt hwclock --systohc
 
-   - name: Set locale
+   - name: set locale
      ansible.builtin.shell: |
        arch-chroot /mnt sed -i -e 's/#{{locale}}/{{locale}}/' /etc/locale.gen
 
-   - name: Gen locale
+   - name: gen locale
      ansible.builtin.shell: |
        arch-chroot /mnt locale-gen
 
-   - name: Locale conf
+   - name: locale conf
      ansible.builtin.template:
       src: files/locale.conf.j2 
       dest: /mnt/etc/locale.conf 
 
-   - name: Vconsole conf
+   - name: vconsole conf
      ansible.builtin.template:
       src: files/vconsole.conf.j2 
       dest: /mnt/etc/vconsole.conf 
 
-   - name: Set hostname
+   - name: set hostname
      ansible.builtin.template:
       src: files/hostname.j2 
       dest: /mnt/etc/hostname 
 
    - block:
-     - name: Make initramfs 
+     - name: make initramfs 
        ansible.builtin.shell: |
-         arch-chroot /mnt mkinitcpio -P  >/dev/null 2>&1
+         arch-chroot /mnt mkinitcpio -p  >/dev/null 2>&1
      ignore_errors: yes
 
-   - name: Set grub
+   - name: set grub
      ansible.builtin.shell: |
        arch-chroot /mnt grub-install \
         --target=x86_64-efi --efi-directory=/boot \
-        --bootloader-id=GRUB
+        --bootloader-id=grub
 
-   - name: Make grub config 
+   - name: make grub config 
      ansible.builtin.shell: |
        arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
    - block:
-     - name: Create user
+     - name: create user
        ansible.builtin.shell: |
          arch-chroot /mnt useradd -m {{new_user}} >/dev/null 2>&1
      ignore_errors: yes
 
-   - name: Set user password
+   - name: set user password
      ansible.builtin.shell: |
-       echo {{new_user}}:{{new_user_pass}} | chpasswd -R /mnt
+       echo {{new_user}}:{{new_user_pass}} | chpasswd -r /mnt
 
-   - name: Create sudoers
-     ansible.builtin.shell: |
+   - name: create sudoers
+     ansible.builtign.shell: |
        arch-chroot /mnt sed -i -e 's/# %sudo/%sudo/' /etc/sudoers
 
-   - name: Set sudo
+   - name: set sudo
      ansible.builtin.shell: |
-       arch-chroot /mnt groupadd -f -U {{new_user}} sudo
+       arch-chroot /mnt groupadd -f -u {{new_user}} sudo
 
-   - name: Configure ansible
+   - name: clean ansible
      ansible.builtin.shell: |
        arch-chroot /mnt \
-        rm -rf /home/{{new_user}}/ansipull \
-        git clone https://github.com/neiltheblue/ansipull.git \
-        /home/{{new_user}}/ansipull
-        
-   - name: Reboot
-      ansible.builtin.reboot:
+        rm -rf /opt/ansipull
 
+   - name: configure ansible
+     ansible.builtin.shell: |
+       arch-chroot /mnt \
+        git clone https://github.com/neiltheblue/ansipull.git /opt/ansipull
+     register: git
+
+   - name: reboot
+     ansible.builtin.reboot:
+       msg: "rebooting machine in 5 seconds"
+       
