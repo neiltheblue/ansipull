@@ -1,15 +1,7 @@
 - name: Configure user
   hosts: all
-  vars:
-   new_user: neil
-   new_user_pass: password
-# Enable the entry below to set a user password    
-  # vars_prompt:
-  #  - name: new_user_pass
-  #    prompt: Please enter the new user password for '{{new_user}}'
-  #    private: true
-  #    confirm: true
-  #    unsafe: true
+  vars_files:
+    - vars.yml
   
   tasks:
 

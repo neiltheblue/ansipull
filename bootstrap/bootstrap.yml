@@ -1,7 +1,6 @@
 - name: Bootstrap host
   hosts: all
   vars:
-   new_user: neil
    hostname: arch
    locale: en_GB
    keymap: uk

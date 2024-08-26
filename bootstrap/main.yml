@@ -12,13 +12,13 @@
 
 
 - name: Bootstrap arch
-  ansible.builtin.import_playbook: bootstrap.yml
+  ansible.builtin.include_playbook: bootstrap.yml
   
 - name: Setup the main user
-  ansible.builtin.import_playbook: user.yml
+  ansible.builtin.include_playbook: user.yml
 
 - name: Start dhcpcd
-  ansible.builtin.import_playbook: dhcpc.yml
+  ansible.builtin.include_playbook: dhcpc.yml
 
 - name: Reboot 
-  ansible.builtin.import_playbook: reboot.yml
+  ansible.builtin.include_playbook: reboot.yml
