@@ -1,0 +1,11 @@
+- name: Configure DHCPC
+  hosts: all
+  
+  tasks:
+
+   - name: Start service
+     ansible.builtin.shell: |
+       arch-chroot /mnt \
+        systemctl enable dhcpcd.service
+
+       

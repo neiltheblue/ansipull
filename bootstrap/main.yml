@@ -20,5 +20,8 @@
 - name: Bootstrap the ansible playbooks
   ansible.builtin.import_playbook: ansible.yml
 
+- name: Start dhcpcd
+  ansible.builtin.import_playbook: dhcpc.yml
+
 - name: Reboot 
   ansible.builtin.import_playbook: reboot.yml
