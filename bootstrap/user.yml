@@ -3,12 +3,13 @@
   vars:
    new_user: neil
    new_user_pass: password
-  vars_prompt:
-   - name: new_user_pass
-     prompt: Please enter the new user password for '{{new_user}}'
-     private: true
-     confirm: true
-     unsafe: true
+# Enable the entry below to set a user password    
+  # vars_prompt:
+  #  - name: new_user_pass
+  #    prompt: Please enter the new user password for '{{new_user}}'
+  #    private: true
+  #    confirm: true
+  #    unsafe: true
   
   tasks:
 
