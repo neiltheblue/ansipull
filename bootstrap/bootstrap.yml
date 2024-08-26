@@ -18,13 +18,14 @@
    hostname: arch
    locale: en_GB
    keymap: uk
+   new_user_pass: password
   vars_prompt:
    - name: new_user_pass
      prompt: Please enter the new user password for '{{new_user}}'
      private: true
      confirm: true
      unsafe: true
-
+  
   tasks:
 
    - name: Boot parition
@@ -150,7 +151,7 @@
        ansible.builtin.shell: |
          arch-chroot /mnt useradd -m {{new_user}} >/dev/null 2>&1
      ignore_errors: yes
-        
+
    - name: Set user password
      ansible.builtin.shell: |
        echo {{new_user}}:{{new_user_pass}} | chpasswd -R /mnt
@@ -158,10 +159,16 @@
    - name: Create sudoers
      ansible.builtin.shell: |
        arch-chroot /mnt sed -i -e 's/# %sudo/%sudo/' /etc/sudoers
-           
+
    - name: Set sudo
      ansible.builtin.shell: |
-        arch-chroot /mnt groupadd -f -U {{new_user}} sudo
+       arch-chroot /mnt groupadd -f -U {{new_user}} sudo
 
+   - name: Configure ansible
+     ansible.builtin.shell: |
+       arch-chroot /mnt \
+        git clone https://github.com/neiltheblue/ansipull.git \
+        /home/{{new_user}}/ansipull
+        
    - name: Reboot
      ansible.builtin.shell: umount -R /mnt && reboot
