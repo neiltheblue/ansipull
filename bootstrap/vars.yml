@@ -1,6 +1,5 @@
-- name: Bootstrap variables
-  vars:
-   new_user: neil
-   hostname: arch
-   locale: en_GB
-   keymap: uk
+new_user: neil
+new_user_pass: password
+hostname: arch
+locale: en_GB
+keymap: uk

@@ -11,14 +11,7 @@
 #   ansible-playbook <playbook> --user root -i <machine ip>, 
 
 
-- name: Bootstrap arch
-  ansible.builtin.include_playbook: bootstrap.yml
-  
-- name: Setup the main user
-  ansible.builtin.include_playbook: user.yml
-
-- name: Start dhcpcd
-  ansible.builtin.include_playbook: dhcpc.yml
-
-- name: Reboot 
-  ansible.builtin.include_playbook: reboot.yml
+- ansible.builtin.import_playbook: bootstrap.yml
+- ansible.builtin.import_playbook: user.yml
+- ansible.builtin.import_playbook: dhcpc.yml
+- ansible.builtin.import_playbook: reboot.yml

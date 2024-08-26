@@ -1,10 +1,8 @@
 - name: Bootstrap host
   hosts: all
-  vars:
-   hostname: arch
-   locale: en_GB
-   keymap: uk
-
+  vars_files:
+  - vars.yml
+  
   tasks:
 
    - name: pacstrap
@@ -34,23 +32,23 @@
 
    - name: locale conf
      ansible.builtin.template:
-      src: files/locale.conf.j2 
+      src: templates/locale.conf.j2 
       dest: /mnt/etc/locale.conf 
 
    - name: vconsole conf
      ansible.builtin.template:
-      src: files/vconsole.conf.j2 
+      src: templates/vconsole.conf.j2 
       dest: /mnt/etc/vconsole.conf 
 
    - name: set hostname
      ansible.builtin.template:
-      src: files/hostname.j2 
+      src: templates/hostname.j2 
       dest: /mnt/etc/hostname 
 
    - block:
      - name: make initramfs 
        ansible.builtin.shell: |
-         arch-chroot /mnt mkinitcpio -p  >/dev/null 2>&1
+         arch-chroot /mnt mkinitcpio -P  >/dev/null 2>&1
      ignore_errors: yes
 
    - name: set grub
