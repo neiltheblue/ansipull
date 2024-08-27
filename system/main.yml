@@ -9,8 +9,7 @@
   - sshd
   - grub
   - plymouth
-#plymouth
-#ntp 
+  - ntp
 #snapper 
 #stow
 #nvim 
