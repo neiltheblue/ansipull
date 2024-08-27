@@ -12,8 +12,9 @@
   - plymouth
   - ntp
   - snapper
-#neofetch config
-#rust & cargo
+  - stow
+  - tmux
+  - rust 
 #tmux 
 #nvim 
 #sddm 

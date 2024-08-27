@@ -1,0 +1,5 @@
+  - name: Clone dotfiles
+    ansible.builtin.git:
+     repo: "{{repo}}"
+     dest: ~/dotfiles
+
