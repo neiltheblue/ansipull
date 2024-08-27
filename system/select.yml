@@ -1,0 +1,7 @@
+###########################
+## Select a single role to execute 
+###########################
+
+- hosts: localhost
+  roles:
+  - "{{play_role}}"

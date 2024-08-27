@@ -26,4 +26,8 @@
     
    - name: set sudo
      ansible.builtin.shell: |
-       arch-chroot /mnt groupadd -f -U {{new_user}} sudo
+       groupadd -f -R /mnt -U {{new_user}} sudo
+
+   - name: set user sudo
+     ansible.builtin.shell: |
+       usermod -a -G sudo -R /mnt {{new_user}} 

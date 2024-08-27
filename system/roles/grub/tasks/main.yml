@@ -11,6 +11,13 @@
     dest: /boot/grub/grub.png
   become: true
 
+- name: Set iso boot
+  ansible.builtin.copy:
+    src: files/etc_grub_d_40_custom 
+    dest: /etc/grub.d/40_custom
+    mode: u=rwx,g=rx,o=rx
+  become: true
+
 - name: Make config
   ansible.builtin.shell: grub-mkconfig -o /boot/grub/grub.cfg
   become: true

@@ -1,0 +1,19 @@
+#!/bin/sh
+exec tail -n +3 $0
+# This file provides an easy way to add custom menu entries.  Simply type the
+# menu entries you want to add after this comment.  Be careful not to change
+# the 'exec tail' line above.
+
+menuentry "manjaro"  {
+    insmod part_gpt
+    set isofile="/manjaro.iso"
+    set dri="free"
+    set lang="en_GB"
+    set keytable="uk"
+    set timezone="Europe/London"
+    search --no-floppy -f --set=root $isofile
+    loopback loop $isofile
+    linux  (loop)/boot/vmlinuz-x86_64 img_loop=$isofile driver=$dri tz=$timezone lang=$lang keytable=$keytable
+    initrd  (loop)/boot/amd_ucode.img (loop)/boot/initramfs-x86_64.img
+}
+

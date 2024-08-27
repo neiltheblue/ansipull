@@ -17,6 +17,7 @@
       - base-devel
       - fzf
       - python3
+      - rsync
     become: true   
 
   - name: Clone yay
