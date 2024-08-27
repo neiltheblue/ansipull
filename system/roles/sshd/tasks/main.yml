@@ -1,20 +1,20 @@
-  - name: Install openssh
-    community.general.pacman:
-      name: openssh
-      update_cache: true
-      state: present
-    become: true   
+- name: Install openssh
+  community.general.pacman:
+    name: openssh
+    update_cache: true
+    state: latest
+  become: true   
 
-  - name: Enable X11
-    ansible.builtin.replace:
-      path: /etc/ssh/sshd_config
-      regexp: ^#(X11.*)
-      replace: \1
-    become: true
+- name: Enable X11
+  ansible.builtin.replace:
+    path: /etc/ssh/sshd_config
+    regexp: ^#(X11.*)
+    replace: \1
+  become: true
 
-  - name: Start service
-    ansible.builtin.systemd_service:
-      service: sshd.service
-      state: started
-      enabled: true
-    become: true   
+- name: Start service
+  ansible.builtin.systemd_service:
+    service: sshd.service
+    state: started
+    enabled: true
+  become: true   

@@ -8,15 +8,13 @@
   - packages
   - sshd
   - grub
-# grub configuration
- # format and background image
- # include iso booting 
-# stow
-# nvim 
-# tmux 
-    #npt 
-    #snapper 
-    #sddm 
-    #timeshift 
-    #plymouth
+  - plymouth
+#plymouth
+#ntp 
+#snapper 
+#stow
+#nvim 
+#tmux 
+#sddm 
+#timeshift 
   

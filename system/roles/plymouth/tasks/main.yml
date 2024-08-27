@@ -1,0 +1,40 @@
+- name: Install plymouth
+  community.general.pacman:
+    name: plymouth
+    update_cache: true
+    state: latest
+  become: true
+
+- name: Enable plymouth in initfs
+  ansible.builtin.replace:
+    path: /etc/mkinitcpio.conf
+    regexp: ^(HOOKS=.* fsck)\)
+    replace: \1 plymouth )
+  become: true
+
+- name: Set delay
+  ansible.builtin.lineinfile:
+    path: /etc/plymouth/plymouthd.conf
+    regex: '^ShowDelay='
+    line: ShowDelay=0
+  become: true
+
+- name: Clone themes
+  ansible.builtin.git:
+   repo: https://github.com/adi1090x/plymouth-themes
+   dest: /tmp/plymouth-themes
+
+- name: Copy theme
+  ansible.builtin.copy:
+    src: /tmp/plymouth-themes/{{pack}}/{{theme}}
+    dest: /usr/share/plymouth/themes 
+  become: true 
+
+- block:
+  - name: Set default theme
+    ansible.builtin.shell: |
+      plymouth-set-default-theme -R {{theme}} >/dev/null 2>&1
+    become: true
+  ignore_errors: yes  
+
+
