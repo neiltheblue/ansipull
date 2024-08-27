@@ -1,0 +1,18 @@
+  - name: Update cache
+    community.general.pacman:
+      update_cache: true
+    become: true   
+
+  - name: Install fonts
+    community.general.pacman:
+      name: "{{item}}"
+      state: latest
+    loop:
+      - ttf-noto-nerd
+      - ttf-0xproto-nerd
+      - otf-monaspace-nerd
+      - ttf-dejavu-nerd
+      - ttf-jetbrains-mono-nerd
+      - ttf-terminus-nerd
+    become: true   
+

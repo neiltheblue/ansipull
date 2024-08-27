@@ -19,7 +19,6 @@
     dest: /etc/snapper/configs/
   become: true 
 
-
 - name: Start service
   ansible.builtin.systemd_service:
     service: snapper-timeline.timer

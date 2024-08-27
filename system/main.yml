@@ -6,14 +6,17 @@
 - hosts: localhost
   roles:
   - packages
+  - fonts
   - sshd
   - grub
   - plymouth
   - ntp
-#snapper 
-#stow
-#nvim 
+  - snapper
+#bat themes
+#neofetch config
+#rust & cargo
 #tmux 
+#nvim 
 #sddm 
 #timeshift 
   
