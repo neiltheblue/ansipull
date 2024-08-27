@@ -23,9 +23,12 @@
        arch-chroot /mnt hwclock --systohc
 
    - name: set locale
-     ansible.builtin.shell: |
-       arch-chroot /mnt sed -i -e 's/#{{locale}}/{{locale}}/' /etc/locale.gen
-
+     ansible.builtin.replace:
+      path: /mnt/etc/locale.gen
+      regexp: ^#({{locale}})
+      replace: \1
+     become: true
+  
    - name: gen locale
      ansible.builtin.shell: |
        arch-chroot /mnt locale-gen

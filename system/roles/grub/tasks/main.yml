@@ -1,0 +1,16 @@
+- name: Set grub defaults
+  ansible.builtin.copy:
+    src: files/etc_default_grub
+    dest: /etc/default/grub
+    backup: yes
+  become: true
+  
+- name: Set background image
+  ansible.builtin.copy:
+    src: files/grub.png
+    dest: /boot/grub/grub.png
+  become: true
+
+- name: Make config
+  ansible.builtin.shell: grub-mkconfig -o /boot/grub/grub.cfg
+  become: true

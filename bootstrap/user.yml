@@ -9,20 +9,21 @@
      ansible.builtin.shell: |
        yes | pacstrap -K /mnt sudo 
   
-   - block:
-     - name: create user
-       ansible.builtin.shell: |
-         arch-chroot /mnt useradd -m {{new_user}} 
-     ignore_errors: yes
+   - name: create user
+     ansible.builtin.shell: |
+      [ ! -z $(arch-chroot /mnt id -u {{new_user}}) ] || useradd -R /mnt -m {{new_user}}
 
    - name: set user password
      ansible.builtin.shell: |
        echo {{new_user}}:{{new_user_pass}} | chpasswd -R /mnt
 
    - name: create sudoers
-     ansible.builtin.shell: |
-       arch-chroot /mnt sed -i -e 's/# %sudo/%sudo/' /etc/sudoers
-   
+     ansible.builtin.replace:
+      path: /mnt/etc/sudoers
+      regexp: ^# (%sudo)
+      replace: \1
+     become: true
+    
    - name: set sudo
      ansible.builtin.shell: |
        arch-chroot /mnt groupadd -f -U {{new_user}} sudo

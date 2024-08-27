@@ -7,3 +7,16 @@
   roles:
   - packages
   - sshd
+  - grub
+# grub configuration
+ # format and background image
+ # include iso booting 
+# stow
+# nvim 
+# tmux 
+    #npt 
+    #snapper 
+    #sddm 
+    #timeshift 
+    #plymouth
+  
