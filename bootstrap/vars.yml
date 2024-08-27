@@ -1,5 +1,5 @@
 new_user: neil
 new_user_pass: password
-hostname: arch
+hostname: box
 locale: en_GB
 keymap: uk
