@@ -40,16 +40,19 @@
      community.general.filesystem:
        device: /dev/sda1
        fstype: vfat
+       force: true
 
    - name: format swap
      community.general.filesystem:
        device: /dev/sda2
        fstype: swap
+       force: true
 
    - name: format root
      community.general.filesystem:
        device: /dev/sda3
        fstype: btrfs
+       force: true
 
    - name: mount root
      ansible.builtin.shell: |
