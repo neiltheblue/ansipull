@@ -8,16 +8,15 @@
     name: "{{item}}"
     state: latest
   loop:
-    - i3-wm
-    - rofi
-    - i3lock
-    - kitty
-    - picom
-    - polybar
-    - feh
-    - network-manager-applet
-    - i3status
-    - rofimoji
+    - xorg
+    - xclip
+    - xorg-xinit
+    - xorg-xrandr
+    - arandr
+    - autorandr
+    - firefox
+    - x11vnc
+    - xss-lock
   become: true   
 
 - name: Install AUR
@@ -25,5 +24,12 @@
     name: "{{item}}" 
     state: latest
   loop:
-    - i3-battery-popup
-    - autotiling
+    - xlayoutdisplay
+    
+- name: Set background image
+  ansible.builtin.copy:
+    src: files/
+    dest: /etc/X11/xorg.conf.d
+  become: true
+
+   

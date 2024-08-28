@@ -17,8 +17,8 @@
   - rust 
   - pipewire 
   - bluetooth 
+  - xorg
   - i3
-#xorg
 # network manager
 #sddm 
 #timeshift 
