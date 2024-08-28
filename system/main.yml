@@ -21,6 +21,4 @@
   - sddm
   - i3
   - networkmanager
-#sddm 
-#timeshift 
-  
+  # - sway

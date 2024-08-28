@@ -42,6 +42,7 @@
     - go
     - jdk-openjdk
     - julia
+    - timeshift
   become: true   
 
 - name: Instal npm 

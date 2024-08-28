@@ -19,8 +19,8 @@
 
 - name: Set config  
   ansible.builtin.copy:
-    src: files/theme.conf.usr
-    dest: /etc/sddm.conf.d/
+    src: files/sddm.conf.d
+    dest: /etc/
   become: true
 
 - name: Start service
