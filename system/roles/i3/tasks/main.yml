@@ -17,6 +17,7 @@
     - feh
     - i3status
     - rofimoji
+    - imagemagick
   become: true   
 
 - name: Install AUR
