@@ -1,0 +1,15 @@
+- name: Install packages
+  community.general.pacman:
+    name: "{{item}}"
+    state: latest
+  loop:
+    - bluez
+    - bluez-utils
+  become: true   
+
+- name: Start service
+  ansible.builtin.systemd_service:
+    service: bluetooth.service
+    state: started
+    enabled: true
+  become: true   

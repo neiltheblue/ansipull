@@ -14,5 +14,6 @@
       - ttf-dejavu-nerd
       - ttf-jetbrains-mono-nerd
       - ttf-terminus-nerd
+      - noto-fonts-emoji
     become: true   
 

@@ -15,8 +15,11 @@
   - stow
   - tmux
   - rust 
-#tmux 
-#nvim 
+  - pipewire 
+  - bluetooth 
+  - i3
+#xorg
+# network manager
 #sddm 
 #timeshift 
   

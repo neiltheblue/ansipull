@@ -42,9 +42,6 @@
     - go
     - jdk-openjdk
     - julia
-    # - wl-copy
-    # - wl-paste
-    # - xclip
   become: true   
 
 - name: Instal npm 

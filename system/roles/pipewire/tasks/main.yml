@@ -1,0 +1,17 @@
+- name: Install packages
+  community.general.pacman:
+    name: "{{item}}"
+    state: latest
+  loop:
+    - pipewire
+    - pipewire-audio
+    - pipewire-alsa
+    - pipewire-pulse
+  become: true   
+
+- name: Start service
+  ansible.builtin.systemd_service:
+    service: pipewire-pulse.service
+    state: started
+    enabled: true
+    scope: user

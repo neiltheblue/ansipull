@@ -1,0 +1,44 @@
+- name: Update cache
+  community.general.pacman:
+    update_cache: true
+  become: true   
+
+- name: Install packages
+  community.general.pacman:
+    name: "{{item}}"
+    state: latest
+  loop:
+    - i3-wm
+    - xorg
+    - ttf-font-awesome
+    - ttf-meslo-nerd
+    - xclip
+    - rofi
+    - i3lock
+    - kitty
+    - xorg-xinit
+    - picom
+    - xorg-xrandr
+    - arandr
+    - autorandr
+    - polybar
+    - firefox
+    - feh
+    - x11vnc
+    - xss-lock
+    - network-manager-applet
+    - i3status
+    - rofimoji
+  become: true   
+
+- name: Install AUR
+  yay: 
+    name: "{{item}}" 
+    state: latest
+  loop:
+    - ttf-font-icons
+    - ttf-ionicons
+    - snapper-tools
+    - xlayoutdisplay
+    - i3-battery-popup
+    - autotiling
