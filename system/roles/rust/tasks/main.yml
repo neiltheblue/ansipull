@@ -2,3 +2,8 @@
   ansible.builtin.shell: |
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o /tmp/rust_install \
     && sh /tmp/rust_install -y
+
+
+- name: Install rust-analyzer
+  ansible.builtin.shell: |
+    rustup component add rust-analyzer

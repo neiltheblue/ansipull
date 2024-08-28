@@ -1,41 +1,102 @@
-  - name: Update cache
-    community.general.pacman:
-      update_cache: true
-    become: true   
+- name: Update cache
+  community.general.pacman:
+    update_cache: true
+  become: true   
 
-  - name: Install packages
-    community.general.pacman:
-      name: "{{item}}"
-      state: latest
-    loop:
-      - less
-      - inetutils
-      - neovim
-      - bat
-      - yazi
-      - which
-      - tree
-      - base-devel
-      - fzf
-      - python3
-      - rsync
-      - stow
-      - tmux
-      - neofetch
-      - starship
-    become: true   
+- name: Install packages
+  community.general.pacman:
+    name: "{{item}}"
+    state: latest
+  loop:
+    - less
+    - inetutils
+    - neovim
+    - bat
+    - yazi
+    - which
+    - tree
+    - base-devel
+    - fzf
+    - python3
+    - python-pip
+    - python-pynvim
+    - rsync
+    - stow
+    - tmux
+    - neofetch
+    - starship
+    - w3m
+    - unzip
+    - lua51
+    - lua51-jsregexp
+    - luarocks
+    - wget
+    - ripgrep
+    - nodejs
+    - npm
+    - ruby
+    - tree-sitter-cli
+    - fd
+    - cpanminus
+    - composer
+    - go
+    - jdk-openjdk
+    - julia
+    # - wl-copy
+    # - wl-paste
+    # - xclip
+  become: true   
 
-  - name: Clone yay
-    ansible.builtin.git:
-     repo: https://aur.archlinux.org/yay.git 
-     dest: /tmp/yay
+- name: Instal npm 
+  community.general.npm:
+    name: "{{item}}"
+    global: true
+  loop:
+    - neovim
+  become: true   
 
-  - name: Install yay 
-    ansible.builtin.shell: |
-      cd /tmp/yay && yes | makepkg -si
+- name: Install cargo 
+  community.general.cargo:
+    name: "{{item}}"
+  loop:
+    - stylua
 
-  - yay: 
-      name: "{{item}}" 
-      state: latest
-    loop:
-      - bashmount
+- name: Install gem 
+  community.general.gem:
+    name: "{{item}}"
+    user_install: false
+  loop:
+    - neovim
+  become: true   
+
+- name: Install perl
+  community.general.cpanm:
+    executable: /usr/bin/vendor_perl/cpanm
+    name: "{{item}}"
+  loop:
+    - Neovim::Ext
+  become: true   
+
+- name: Clone yay
+  ansible.builtin.git:
+   repo: https://aur.archlinux.org/yay.git 
+   dest: /tmp/yay
+
+- name: Install yay 
+  ansible.builtin.shell: |
+    cd /tmp/yay && yes | makepkg -si
+
+- name: Install Local Luarocks 
+  luarocks:
+    name: "{{item}}"
+    local: yes
+  loop:
+    - jsregexp
+    
+- name: Install AUR
+  yay: 
+    name: "{{item}}" 
+    state: latest
+  loop:
+    - bashmount
+    - lemonade-git
