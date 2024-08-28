@@ -1,0 +1,31 @@
+- name: Update cache
+  community.general.pacman:
+    update_cache: true
+  become: true   
+
+- name: Install packages
+  community.general.pacman:
+    name: "{{item}}"
+    state: latest
+  loop:
+    - sddm
+  become: true   
+  
+- name: Set themes  
+  ansible.builtin.copy:
+    src: files/catppuccin-mocha
+    dest: /usr/share/sddm/themes/
+  become: true
+
+- name: Set config  
+  ansible.builtin.copy:
+    src: files/theme.conf.usr
+    dest: /etc/sddm.conf.d/
+  become: true
+
+- name: Start service
+  ansible.builtin.systemd_service:
+    service: sddm.service
+    state: started
+    enabled: true
+  become: true   

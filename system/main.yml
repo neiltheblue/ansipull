@@ -18,6 +18,7 @@
   - pipewire 
   - bluetooth 
   - xorg
+  - sddm
   - i3
   - networkmanager
 #sddm 
