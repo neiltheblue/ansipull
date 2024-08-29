@@ -1,0 +1,8 @@
+- name: Set timeout
+  ansible.builtin.copy:
+    src: files/timeout
+    dest: /etc/sudoers.d/
+  become: true
+  
+- name: Enable sudo
+  ansible.builtin.shell: sudo id

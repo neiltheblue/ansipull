@@ -3,22 +3,34 @@
 ## This and any child playbooks should be run on the local host.
 ###########################
 
-- hosts: localhost
-  roles:
-  - packages
-  - fonts
-  - sshd
-  - grub
-  - plymouth
-  - ntp
-  - snapper
-  - stow
-  - tmux
-  - rust 
-  - pipewire 
-  - bluetooth 
-  - xorg
-  - sddm
-  - i3
-  - networkmanager
-  # - sway
+- ansible.builtin.import_playbook: core.yml
+  
+  # roles:
+  # - packages
+  # - sshd
+  # - fonts
+  # - grub
+  # - plymouth
+  # - ntp
+  # - snapper
+  # - tmux
+  # - pipewire 
+  # - bluetooth 
+  # - xorg
+  # - sddm
+  # - i3
+  # - networkmanager
+  # # - sway
+  #
+  #   # group these roles into sub playbooks:
+  #   #  console 
+  #   #  xorg 
+  #   #  wayland
+  #
+  #
+  #   # can become password be used by yay? 
+  #   # can a password protected key be used for git calls?
+  #   # can nvim support includes be loaded globally?
+  #
+  #   ################################################################
+  #   # When done, clean all and reinstall while making README.md file

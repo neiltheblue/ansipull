@@ -14,4 +14,4 @@
 - ansible.builtin.import_playbook: bootstrap.yml
 - ansible.builtin.import_playbook: user.yml
 - ansible.builtin.import_playbook: dhcpc.yml
-- ansible.builtin.import_playbook: reboot.yml
+# - ansible.builtin.import_playbook: reboot.yml

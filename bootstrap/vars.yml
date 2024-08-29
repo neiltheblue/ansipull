@@ -1,5 +1,16 @@
+# The main user to create in the new system.
 new_user: neil
+
+# The default user password. 
+# This can be changed after installtion by running 'passwd' when logged in as the user.
 new_user_pass: password
+
+# The hostname. 
+# This can be changed after installation by editing /etc/hostname.  
 hostname: box
+
+# The locale to use of the system.
 locale: en_GB
+
+# The console keymap to use.
 keymap: uk

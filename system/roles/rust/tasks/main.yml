@@ -6,4 +6,4 @@
 
 - name: Install rust-analyzer
   ansible.builtin.shell: |
-    rustup component add rust-analyzer
+    ~/.cargo/bin/rustup component add rust-analyzer

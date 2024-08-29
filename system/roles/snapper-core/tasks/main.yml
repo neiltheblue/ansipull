@@ -1,0 +1,33 @@
+- name: Install snapper
+  community.general.pacman:
+    name: snapper
+    update_cache: true
+    state: latest
+  become: true
+
+- name: Install snapper tools
+  yay: 
+    name: "{{item}}" 
+    state: latest
+  loop:
+    - btrfs-assistant
+
+- name: Copy configs
+  ansible.builtin.copy:
+    src: files/ 
+    dest: /etc/snapper/configs/
+  become: true 
+
+- name: Start service
+  ansible.builtin.systemd_service:
+    service: snapper-timeline.timer
+    state: started
+    enabled: true
+  become: true
+
+- name: Start service cleaner
+  ansible.builtin.systemd_service:
+    service: snapper-cleanup.timer
+    state: started
+    enabled: true
+  become: true

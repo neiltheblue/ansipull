@@ -1,0 +1,5 @@
+- name: Set timeout
+  ansible.builtin.file:
+    path: /etc/sudoers.d/timeout
+    state: absent
+  become: true

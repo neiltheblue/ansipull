@@ -1,0 +1,37 @@
+###########################
+## Core system playbook.
+## This and any child playbooks should be run on the local host.
+###########################
+
+- hosts: localhost
+  roles:
+  - sudo-enable
+  - packages-core
+  - sshd
+  - grub
+  - plymouth
+  - networkmanager-core
+  - ntp
+  - snapper-core
+  - tmux
+  - pipewire 
+  - bluetooth 
+  - sudo-disable
+    # graphical
+  # - snapper
+  # - fonts
+  # - packages
+  # - networkmanager
+    #xorg
+  # - xorg
+  # - sddm
+  # - i3
+    # wayland
+  # - sway
+    
+    # can sudo password be disabled for yay
+    # how should sudo password be re-use
+    # group these roles into sub playbooks
+
+    ################################################################
+    # When done, clean all and reinstall while making README.md file

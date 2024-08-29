@@ -8,23 +8,12 @@
     name: "{{item}}"
     state: latest
   loop:
-    - sddm
+    - networkmanager
   become: true   
-  
-- name: Set themes  
-  ansible.builtin.copy:
-    src: files/catppuccin-mocha
-    dest: /usr/share/sddm/themes/
-  become: true
-
-- name: Set config  
-  ansible.builtin.copy:
-    src: files/sddm.conf.d
-    dest: /etc/
-  become: true
 
 - name: Start service
   ansible.builtin.systemd_service:
-    service: sddm.service
+    service: NetworkManager.service
+    state: started
     enabled: true
   become: true   

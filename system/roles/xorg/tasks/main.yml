@@ -26,7 +26,7 @@
   loop:
     - xlayoutdisplay
     
-- name: Set background image
+- name: Set xorg config files
   ansible.builtin.copy:
     src: files/
     dest: /etc/X11/xorg.conf.d

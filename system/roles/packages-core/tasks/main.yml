@@ -42,7 +42,6 @@
     - go
     - jdk-openjdk
     - julia
-    - timeshift
   become: true   
 
 - name: Instal npm packages
@@ -89,13 +88,6 @@
   ansible.builtin.shell: |
     cd /tmp/yay && yes | makepkg -si
 
-- name: Install Local Luarocks 
-  luarocks:
-    name: "{{item}}"
-    local: yes
-  loop:
-    - jsregexp
-    
 - name: Install AUR packages
   yay: 
     name: "{{item}}" 
@@ -103,3 +95,4 @@
   loop:
     - bashmount
     - lemonade-git
+    
