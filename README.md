@@ -71,3 +71,15 @@ To run the bootstrap execute:
 ```
     passwd
 ```
+ - Next you can either review and update any `system/roles/\<role\>/vars/main.yml` files on the host machine, and then copy the repo to the target machine. This is probably the easiest option:
+```
+rsync -r <user>@<host>:/path/to/ansipull .
+```
+ - Or you can clone the repo directly to the target machine and update any `system/roles/\<role\>/vars/main.yml` files:
+```
+git clone https://github.com/neiltheblue/ansipull
+```
+- If you pulled the repo using either method onto the target then the install can be run using the following command or you can change `main.yml` to one of the more specific targets:
+```
+ansible-playbook ansipull/system/main.yml -K
+```
