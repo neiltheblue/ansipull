@@ -1,0 +1,6 @@
+- name: Install snapper tools
+  yay: 
+    name: "{{item}}" 
+    state: latest
+  loop:
+    - snapper-tools

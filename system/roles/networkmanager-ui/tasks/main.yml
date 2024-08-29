@@ -8,14 +8,6 @@
     name: "{{item}}"
     state: latest
   loop:
-    - networkmanager
     - nm-connection-editor
     - network-manager-applet
-  become: true   
-
-- name: Start service
-  ansible.builtin.systemd_service:
-    service: NetworkManager.service
-    state: started
-    enabled: true
   become: true   

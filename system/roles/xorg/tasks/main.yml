@@ -14,7 +14,6 @@
     - xorg-xrandr
     - arandr
     - autorandr
-    - firefox
     - x11vnc
     - xss-lock
   become: true   

@@ -1,20 +1,14 @@
 ###########################
-## Core system playbook.
+## Graphical playbook.
 ## This and any child playbooks should be run on the local host.
 ###########################
+
 
 - hosts: localhost
   roles:
   - sudo-enable
-  - packages-core
-  - sshd
-  - grub
-  - plymouth
-  - networkmanager-core
-  - ntp
-  - snapper-core
-  - tmux
-  - pipewire 
-  - bluetooth 
+  - xorg
+  - sddm-xorg
+  - i3
   - sudo-disable
-   
+    

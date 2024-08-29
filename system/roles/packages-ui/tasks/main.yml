@@ -1,0 +1,20 @@
+- name: Update cache
+  community.general.pacman:
+    update_cache: true
+  become: true   
+
+- name: Install pacman packages
+  community.general.pacman:
+    name: "{{item}}"
+    state: latest
+  loop:
+    - firefox
+    - timeshift
+  become: true   
+
+- name: Install AUR packages
+  yay: 
+    name: "{{item}}" 
+    state: latest
+  loop:
+    - google-chrome
