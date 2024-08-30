@@ -1,0 +1,29 @@
+- name: Update cache
+  community.general.pacman:
+    update_cache: true
+  become: true   
+
+- name: Install packages
+  community.general.pacman:
+    name: "{{item}}"
+    state: latest
+  loop:
+    - hyprland
+    - hyprpaper
+    - hypridle 
+    - hyprlock 
+    - hyprcursor 
+    - mako 
+    - cliphist
+    - dolphin
+  become: true   
+
+- name: Install AUR
+  yay: 
+    name: "{{item}}" 
+    state: latest
+  loop:
+    - hyprpicker  
+    - sweet-cursors-hyprcursor-git
+    - nordzy-cursors-hyprcursor
+    - xcursor-pro-hyprcursor

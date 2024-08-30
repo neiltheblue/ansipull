@@ -1,5 +1,5 @@
 ###########################
-## Sway playbook.
+## Hyprland playbook.
 ## This and any child playbooks should be run on the local host.
 ###########################
 
@@ -8,5 +8,5 @@
   roles:
   - sudo-enable
   - sddm-wayland
-  - sway
+  - hyprland
   - sudo-disable

@@ -1,8 +1,19 @@
 - name: Reboot
   hosts: all
-  
+  vars_files:
+    - vars.yml
+  vars_prompt:
+  - name: user_password
+    prompt: Please enter a password for the new user 
+    private: true
+    confirm: true
+
   tasks:
 
-  - name: Reboot machine and send a message
+  - name: set user password
+    ansible.builtin.shell: |
+      echo {{new_user}}:{{user_password}} | chpasswd -R /mnt
+
+
+  - name: Reboot machine...
     ansible.builtin.reboot:
-      msg: "Rebooting machine in 5 seconds"
