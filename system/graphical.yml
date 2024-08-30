@@ -8,6 +8,6 @@
   - sudo-enable
   - fonts
   - packages-ui
-  - snapper-ui
+  # - snapper-ui
   - networkmanager-ui
   - sudo-disable
