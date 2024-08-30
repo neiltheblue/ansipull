@@ -17,6 +17,7 @@
      - ttf-font-awesome
      - ttf-meslo-nerd
      - noto-fonts-emoji
+     - ttf-inconsolata-nerd
    become: true   
 
  - name: Install AUR

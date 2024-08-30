@@ -6,3 +6,4 @@
 - ansible.builtin.import_playbook: core.yml
 - ansible.builtin.import_playbook: graphical.yml
 - ansible.builtin.import_playbook: i3.yml
+- ansible.builtin.import_playbook: sway.yml

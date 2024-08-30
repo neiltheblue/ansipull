@@ -7,10 +7,9 @@
 - hosts: localhost
   roles:
   - sudo-enable
-  - xorg
-  - sddm-xorg
-  - i3
+  - sddm-wayland
+  - sway
   - sudo-disable
-  # - sddm
-  # - sway
-    # update the default user password    
+    #
+    # collect username if not set
+    # Set the user password and reboot after bootstrapping
