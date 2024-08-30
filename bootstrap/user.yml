@@ -13,10 +13,6 @@
      ansible.builtin.shell: |
       [ ! -z $(arch-chroot /mnt id -u {{new_user}}) ] || useradd -R /mnt -m {{new_user}}
 
-   - name: set user password
-     ansible.builtin.shell: |
-       echo {{new_user}}:{{new_user_pass}} | chpasswd -R /mnt
-
    - name: create sudoers
      ansible.builtin.replace:
       path: /mnt/etc/sudoers

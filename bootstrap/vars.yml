@@ -1,10 +1,6 @@
 # The main user to create in the new system.
 new_user: neil
 
-# The default user password. 
-# This can be changed after installtion by running 'passwd' when logged in as the user.
-new_user_pass: password
-
 # The hostname. 
 # This can be changed after installation by editing /etc/hostname.  
 hostname: box
