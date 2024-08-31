@@ -10,3 +10,6 @@ locale: en_GB
 
 # The console keymap to use.
 keymap: uk
+
+# reboot after finish
+reboot: false

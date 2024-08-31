@@ -1,0 +1,15 @@
+- name: Reboot
+  hosts: all
+  vars_files:
+    - vars.yml
+ 
+  tasks:
+
+
+  - ansible.builtin.debug:
+      msg: "{{reboot}}"
+
+  - name: Reboot machine...
+    ansible.builtin.debug:
+      msg: running...
+    when: reboot 
