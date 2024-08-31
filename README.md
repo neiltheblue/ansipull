@@ -83,3 +83,7 @@ git clone https://github.com/neiltheblue/ansipull
 ```
 ansible-playbook ansipull/system/main.yml -K
 ```
+- Or to run it with one command:
+```
+ansible-pull -U https://github.com/neiltheblue/ansipull -K system/main.yml
+```
