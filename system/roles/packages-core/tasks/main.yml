@@ -1,4 +1,4 @@
-- name: Update cache
+- name: update cache
   community.general.pacman:
     update_cache: true
   become: true   

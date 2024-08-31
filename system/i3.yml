@@ -7,8 +7,6 @@
 - hosts: localhost
   roles:
   - sudo-enable
-  - xorg
-  - sddm-xorg
   - i3
   - sudo-disable
     

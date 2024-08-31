@@ -1,3 +1,8 @@
+- name: update cache
+  community.general.pacman:
+    update_cache: true
+  become: true   
+
 - name: Install plymouth
   community.general.pacman:
     name: plymouth

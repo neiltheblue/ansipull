@@ -1,3 +1,8 @@
+- ansible.builtin.include_role:
+    name: "{{item}}"
+  loop:
+    - networkmanager-core
+
 - name: Update cache
   community.general.pacman:
     update_cache: true

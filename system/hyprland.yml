@@ -7,6 +7,5 @@
 - hosts: localhost
   roles:
   - sudo-enable
-  - sddm-wayland
   - hyprland
   - sudo-disable

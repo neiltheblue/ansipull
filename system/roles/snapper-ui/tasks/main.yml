@@ -1,3 +1,8 @@
+- ansible.builtin.include_role:
+    name: "{{item}}"
+  loop:
+    - snapper-core
+
 - name: Install snapper tools
   yay: 
     name: "{{item}}" 

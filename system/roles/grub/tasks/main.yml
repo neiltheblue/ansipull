@@ -1,3 +1,15 @@
+- name: Update cache
+  community.general.pacman:
+    update_cache: true
+  become: true   
+
+- name: Install grub
+  community.general.pacman:
+    name: "{{item}}"
+    state: latest
+  loop:
+    - grub
+ 
 - name: Set grub defaults
   ansible.builtin.copy:
     src: files/etc_default_grub
