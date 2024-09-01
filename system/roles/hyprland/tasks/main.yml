@@ -23,7 +23,6 @@
     - dolphin
     - mesa
     - wpaperd
-    - pavucontrol
   become: true   
 
 - name: Install AUR

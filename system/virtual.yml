@@ -1,0 +1,11 @@
+###########################
+## Core system playbook.
+## This and any child playbooks should be run on the local host.
+###########################
+
+- hosts: localhost
+  roles:
+  - sudo-enable
+  - virtualbox
+  - sudo-disable
+   

@@ -1,0 +1,54 @@
+- name: update cache
+  community.general.pacman:
+    update_cache: true
+  become: true   
+
+- name: Mount virtual drive
+  ansible.posix.mount:
+    path: /var/virtual
+    src: LABEL=Virtual
+    fstype: ext4
+    opts: defaults
+    state: mounted
+  become: true   
+
+- name: Install packages
+  community.general.pacman:
+    name: "{{item}}"
+    state: latest
+  loop:
+    - virtualbox-host-modules-arch
+    - virtualbox
+  become: true   
+
+- name: Vbox driver
+  community.general.modprobe:
+    name: vboxdrv 
+    state: present
+  become: true   
+
+- name: Add vboxusers group 
+  ansible.builtin.user:
+    name: "{{item}}"
+    groups: vboxusers 
+    append: yes
+  loop:
+    "{{users}}"
+  become: true   
+
+- name: Install AUR packages
+  yay: 
+    name: "{{item}}" 
+    state: latest
+  loop:
+    - virtualbox-ext-oracle
+
+- name: Create the virtual machine dir
+  ansible.builtin.file:
+    path: /var/virtual/virtualbox_vms
+    state: directory
+    mode: '0775'
+    owner: root
+    group: 'vboxusers'
+  become: true   
+

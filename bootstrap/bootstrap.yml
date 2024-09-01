@@ -16,7 +16,7 @@
 
    - name: set timezone
      ansible.builtin.shell: |
-       arch-chroot /mnt ln -sf /usr/share/zoneinfo/europe/london /etc/localtime
+       arch-chroot /mnt ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
 
    - name: set clock
      ansible.builtin.shell: |
