@@ -15,6 +15,7 @@
   loop:
     - firefox
     - timeshift
+    - gparted
   become: true   
 
 - name: Install AUR packages

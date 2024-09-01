@@ -12,6 +12,24 @@
     state: mounted
   become: true   
 
+- name: Create the ISO dir
+  ansible.builtin.file:
+    path: /var/virtual/ISO
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root
+  become: true   
+
+- name: Mount ISO drive
+  ansible.posix.mount:
+    path: /var/virtual/ISO
+    src: LABEL=ISO
+    fstype: ext4
+    opts: defaults
+    state: mounted
+  become: true   
+
 - name: Install packages
   community.general.pacman:
     name: "{{item}}"
@@ -23,8 +41,11 @@
 
 - name: Vbox driver
   community.general.modprobe:
-    name: vboxdrv 
+    name: "{{item}}" 
     state: present
+  loop:
+    - vboxdrv
+    - vboxnetflt
   become: true   
 
 - name: Add vboxusers group 
