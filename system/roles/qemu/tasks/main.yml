@@ -1,0 +1,14 @@
+- name: update cache
+  community.general.pacman:
+    update_cache: true
+  become: true   
+
+- name: Install packages
+  community.general.pacman:
+    name: "{{item}}"
+    state: latest
+  loop:
+    - edk2-ovmf
+    - qemu
+    - qemu-desktop
+  become: true   

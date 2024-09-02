@@ -7,5 +7,6 @@
   roles:
   - sudo-enable
   - virtualbox
+  - qemu
   - sudo-disable
    
