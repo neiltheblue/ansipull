@@ -1,0 +1,42 @@
+- name: Include global
+  ansible.builtin.include_role:
+    public: true
+    name: global
+
+- name: Update cache
+  community.general.pacman:
+    update_cache: true
+  become: true   
+
+- name: Install pacman packages
+  community.general.pacman:
+    name: "{{item}}"
+    state: latest
+  loop:
+    - polkit
+  become: true   
+
+- name: Install AUR packages
+  yay: 
+    name: "{{item}}" 
+    state: latest
+  loop:
+    - polkit-explorer-git
+
+- name: Set polkit file
+  ansible.builtin.copy:
+    src: files/
+    dest: /etc/polkit-1/localauthority/50-local.d/
+    backup: yes
+  become: true
+ 
+- name: Add storage group
+  ansible.builtin.user:
+    name: "{{item}}"
+    groups: storage 
+    append: yes
+  loop:
+    "{{users}}"
+  become: true   
+
+

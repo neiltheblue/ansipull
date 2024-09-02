@@ -13,6 +13,13 @@
      ansible.builtin.shell: |
       [ ! -z $(arch-chroot /mnt id -u {{new_user}}) ] || useradd -R /mnt -m {{new_user}}
 
+   - name: create wheel
+     ansible.builtin.replace:
+      path: /mnt/etc/sudoers
+      regexp: ^# (%wheel)
+      replace: \1
+     become: true
+ 
    - name: create sudoers
      ansible.builtin.replace:
       path: /mnt/etc/sudoers
@@ -24,6 +31,13 @@
      ansible.builtin.shell: |
        groupadd -f -R /mnt -U {{new_user}} sudo
 
+   - name: set user wheel
+     ansible.builtin.shell: |
+       usermod -a -G wheel -R /mnt {{new_user}} 
+
    - name: set user sudo
      ansible.builtin.shell: |
        usermod -a -G sudo -R /mnt {{new_user}} 
+
+
+

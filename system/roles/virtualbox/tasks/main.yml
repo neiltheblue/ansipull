@@ -1,3 +1,8 @@
+- name: Include global
+  ansible.builtin.include_role:
+    public: true
+    name: global
+
 - name: update cache
   community.general.pacman:
     update_cache: true

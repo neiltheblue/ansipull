@@ -9,4 +9,5 @@
   - fonts
   - packages-ui
   - networkmanager-ui
+  - polkit
   - sudo-disable
