@@ -16,6 +16,7 @@
     - firefox
     - timeshift
     - gparted
+    - xterm
   become: true   
 
 - name: Install AUR packages
@@ -24,3 +25,4 @@
     state: latest
   loop:
     - google-chrome
+    - stremio

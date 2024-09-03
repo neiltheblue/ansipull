@@ -43,6 +43,7 @@
     - go
     - jdk-openjdk
     - julia
+    - net-tools
   become: true   
 
 - name: Instal npm packages
