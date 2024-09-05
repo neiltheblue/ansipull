@@ -45,6 +45,7 @@
     - julia
     - net-tools
     - qemu-ui-curses
+    - htop
   become: true   
 
 - name: Instal npm packages
