@@ -7,8 +7,10 @@
   roles:
   - sudo-enable
   - packages-core
+  - cron
   - sshd
   - grub
+  - backup
   - plymouth
   - networkmanager-core
   - ntp

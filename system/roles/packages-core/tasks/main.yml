@@ -44,6 +44,7 @@
     - jdk-openjdk
     - julia
     - net-tools
+    - qemu-ui-curses
   become: true   
 
 - name: Instal npm packages

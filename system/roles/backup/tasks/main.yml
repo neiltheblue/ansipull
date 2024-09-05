@@ -1,0 +1,25 @@
+- ansible.builtin.include_role:
+    name: "{{item}}"
+  loop:
+    - cron
+
+- name: Update cache
+  community.general.pacman:
+    update_cache: true
+  become: true   
+
+- name: Install grub
+  community.general.pacman:
+    name: "{{item}}"
+    state: latest
+  loop:
+    - rclone
+  become: true
+ 
+- name: Set grub defaults
+  ansible.builtin.copy:
+    src: files/
+    dest: /etc/cron.daily/
+    backup: yes
+    mode: u=rwx,g=r,o=r
+  become: true

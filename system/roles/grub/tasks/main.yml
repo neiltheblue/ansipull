@@ -9,6 +9,8 @@
     state: latest
   loop:
     - grub
+    - os-prober
+  become: true
  
 - name: Set grub defaults
   ansible.builtin.copy:
