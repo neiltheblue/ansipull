@@ -16,10 +16,11 @@
     - rclone
   become: true
  
-- name: Set grub defaults
+- name: Set cron file
   ansible.builtin.copy:
     src: files/
     dest: /etc/cron.daily/
-    backup: yes
-    mode: u=rwx,g=r,o=r
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
   become: true

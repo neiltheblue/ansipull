@@ -15,9 +15,7 @@
     state: latest
   loop:
     - btrfs-assistant
-    - snap-pac-grub
     - snap-pac
-    - grub-btrfs
      
 - name: Create configs
   ansible.builtin.shell:
@@ -40,6 +38,5 @@
   loop:
     - snapper-timeline.timer
     - snapper-cleanup.timer
-    - grub-btrfsd
   become: true
 

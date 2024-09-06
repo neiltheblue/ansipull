@@ -16,7 +16,10 @@
     - firefox
     - timeshift
     - gparted
-    - xterm
+    - xterm 
+    - filelight
+    - gdu
+    - tigervnc
   become: true   
 
 - name: Install AUR packages
