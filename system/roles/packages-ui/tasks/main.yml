@@ -20,6 +20,9 @@
     - filelight
     - gdu
     - tigervnc
+    - sane
+    - simple-scan
+    - gimp
   become: true   
 
 - name: Install AUR packages
