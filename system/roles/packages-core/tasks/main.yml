@@ -46,6 +46,7 @@
     - net-tools
     - qemu-ui-curses
     - htop
+    - qmk
   become: true   
 
 - name: Instal npm packages
