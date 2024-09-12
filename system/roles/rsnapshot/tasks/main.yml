@@ -1,0 +1,56 @@
+- name: update cache
+  community.general.pacman:
+    update_cache: true
+  become: true   
+
+- name: Install packages
+  community.general.pacman:
+    name: "{{item}}"
+    state: latest
+  loop:
+    - rsnapshot
+  become: true   
+
+- name: Mount backup drive
+  ansible.posix.mount:
+    path: /var/store  
+    src: LABEL=STORE
+    fstype: ext4
+    opts: defaults
+    state: mounted
+  become: true   
+
+- name: Copy config
+  ansible.builtin.copy:
+    src: rsnapshot.conf
+    dest: /etc
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true 
+
+- name: Copy services
+  ansible.builtin.copy:
+    src: "{{item}}"
+    dest: /etc/systemd/system/
+    owner: root
+    group: root
+    mode: u=rwx,g=xr,o=xr
+  become: true 
+  loop:
+    - rsnapshot@.service
+    - rsnapshot-hourly.timer  
+    - rsnapshot-daily.timer 
+    - rsnapshot-weekly.timer
+  
+- name: Start service
+  ansible.builtin.systemd_service:
+    service: "{{item}}"
+    state: started
+    enabled: true
+  become: true
+  loop:
+    - rsnapshot-hourly.timer
+    - rsnapshot-daily.timer
+    - rsnapshot-weekly.timer
+

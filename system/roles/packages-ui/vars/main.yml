@@ -1,6 +1,5 @@
 pacman:
     - firefox
-    - timeshift
     - gparted
     - xterm 
     - filelight

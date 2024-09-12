@@ -16,6 +16,15 @@
     - rclone
   become: true
  
+- name: Mount backup drive
+  ansible.posix.mount:
+    path: /var/store  
+    src: LABEL=STORE
+    fstype: ext4
+    opts: defaults
+    state: mounted
+  become: true   
+
 - name: Set cron file
   ansible.builtin.copy:
     src: files/
