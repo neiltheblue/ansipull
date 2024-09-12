@@ -12,23 +12,12 @@
   community.general.pacman:
     name: "{{item}}"
     state: latest
-  loop:
-    - firefox
-    - timeshift
-    - gparted
-    - xterm 
-    - filelight
-    - gdu
-    - tigervnc
-    - sane
-    - simple-scan
-    - gimp
   become: true   
+  loop: "{{pacman}}"
 
 - name: Install AUR packages
   yay: 
     name: "{{item}}" 
     state: latest
-  loop:
-    - google-chrome
-    - stremio
+  loop: "{{aur}}"
+

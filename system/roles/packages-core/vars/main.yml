@@ -1,0 +1,45 @@
+pacman: 
+    - less
+    - inetutils
+    - mercurial
+    - neovim
+    - bat
+    - yazi
+    - which
+    - tree
+    - base-devel
+    - fzf
+    - python3
+    - python-pip
+    - python-pynvim
+    - rsync
+    - stow
+    - tmux
+    - neofetch
+    - starship
+    - w3m
+    - unzip
+    - lua51
+    - lua51-jsregexp
+    - luarocks
+    - wget
+    - ripgrep
+    - nodejs
+    - npm
+    - ruby
+    - tree-sitter-cli
+    - fd
+    - cpanminus
+    - composer
+    - go
+    - jdk-openjdk
+    - julia
+    - net-tools
+    - qemu-ui-curses
+    - htop
+    - qmk
+ 
+aur:
+    - bashmount
+    - lemonade-git
+ 

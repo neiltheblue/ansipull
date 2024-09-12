@@ -1,0 +1,15 @@
+pacman:
+    - firefox
+    - timeshift
+    - gparted
+    - xterm 
+    - filelight
+    - gdu
+    - tigervnc
+    - sane
+    - simple-scan
+    - gimp
+ 
+aur:
+    - google-chrome
+    - stremio
