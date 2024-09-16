@@ -1,9 +1,5 @@
 #!/bin/bash                                                                                                         
 
-DIR=/tmp/backup-$(date +%s)
-mkdir -p ${DIR}
-mount /dev/disk/by-label/BACKUP ${DIR}
+DIR=/var/clone
 ${DIR}/bin/backup.sh
-umount -R ${DIR}
-rmdir ${DIR}
 

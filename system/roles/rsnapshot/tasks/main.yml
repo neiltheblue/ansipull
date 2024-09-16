@@ -11,6 +11,15 @@
     - rsnapshot
   become: true   
 
+- name: Mount clone drive
+  ansible.posix.mount:
+    path: /var/clone  
+    src: LABEL=BACKUP
+    fstype: ext4
+    opts: defaults
+    state: mounted
+  become: true   
+
 - name: Mount backup drive
   ansible.posix.mount:
     path: /var/store  
