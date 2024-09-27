@@ -38,6 +38,8 @@ pacman:
     - qemu-ui-curses
     - htop
     - qmk
+    - power-profiles-daemon 
+    - msgpack-c
  
 aur:
     - bashmount
