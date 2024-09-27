@@ -16,13 +16,16 @@
   loop:
     - btrfs-assistant
     - snap-pac
-     
-- name: Create configs
+
+- name: Create home config
   ansible.builtin.shell:
-    snapper -c root create-config / \
-    && snapper -c home create-config /home
+    "[ -e '/etc/snapper/configs/home' ] || snapper -c home create-config /home"
   become: true
 
+- name: Create root config
+  ansible.builtin.shell:
+    "[ -e '/etc/snapper/configs/root' ] || snapper -c root create-config /"
+  become: true
 
 - name: Copy configs
   ansible.builtin.copy:

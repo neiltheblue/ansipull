@@ -10,7 +10,7 @@
   - cron
   - sshd
   - grub
-  - backup
+  - clone-backup
   - plymouth
   - networkmanager-core
   - ntp
