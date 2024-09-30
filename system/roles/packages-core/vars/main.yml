@@ -40,6 +40,7 @@ pacman:
     - qmk
     - power-profiles-daemon 
     - msgpack-c
+    - spdlog
  
 aur:
     - bashmount

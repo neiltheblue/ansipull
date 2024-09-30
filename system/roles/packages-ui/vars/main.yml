@@ -8,6 +8,7 @@ pacman:
     - sane
     - simple-scan
     - gimp
+    - transmission-gtk
  
 aur:
     - google-chrome
