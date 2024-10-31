@@ -41,8 +41,14 @@ pacman:
     - power-profiles-daemon 
     - msgpack-c
     - spdlog
- 
+    - bridge-utils
+    - libvirt
+    - tldr
+    - thefuck
+    - zoxide
+
 aur:
     - bashmount
     - lemonade-git
- 
+    - eza
+  #- fzf-git 

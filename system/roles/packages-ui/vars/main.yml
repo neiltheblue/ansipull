@@ -9,7 +9,15 @@ pacman:
     - simple-scan
     - gimp
     - transmission-gtk
+    - gst-plugins-bad-libs
+    - gstreamer 
+    - virt-manager
+    - telegram-desktop
+    - swaync 
+    - libnotify
  
 aur:
     - google-chrome
     - stremio
+    - nwg-look
+    - catppuccin-gtk-theme-mocha
