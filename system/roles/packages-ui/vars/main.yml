@@ -15,9 +15,11 @@ pacman:
     - telegram-desktop
     - swaync 
     - libnotify
+    - fuse
  
 aur:
     - google-chrome
     - stremio
     - nwg-look
     - catppuccin-gtk-theme-mocha
+    - zoom
